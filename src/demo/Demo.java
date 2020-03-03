@@ -12,8 +12,6 @@ public class Demo
 {
     public static void main(String[] args)
     {
-        Solution solution=new Solution();
-
         //多叉树的初始化
         ArrayList<Node> oneList=new ArrayList<>();//oneList存放根节点的所有孩子
 
@@ -31,7 +29,7 @@ public class Demo
         fourList.add(new Node(9,null));
         oneList.add(new Node(4,fourList));//给根节点添加孩子4
 
-        List<List<Integer>> aList= solution.levelOrder(new Node(1,  oneList));
+        List<List<Integer>> aList= Solution.levelOrder(new Node(1,  oneList));
         for (List<Integer> integers : aList)//遍历输出
         {
 
@@ -88,10 +86,10 @@ class Node
 
 class Solution
 {
-    List<List<Integer>> totalList = new ArrayList<List<Integer>>();//存放的是整棵树的所有数据
 
-    public List<List<Integer>> levelOrder(Node rootNode)
+    public static List<List<Integer>> levelOrder(Node rootNode)
     {
+        List<List<Integer>> totalList = new ArrayList<List<Integer>>();//存放的是整棵树的所有数据
         if (rootNode == null)
         {
             return totalList;
