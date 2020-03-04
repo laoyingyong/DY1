@@ -26,27 +26,19 @@ public class Demo
 
         ArrayList<Node> fourList=new ArrayList<>();//用于存放结点4的所有孩子
         fourList.add(new Node(8,null));
-        fourList.add(new Node(9,null));
+
+
+        ArrayList<Node> nineList=new ArrayList<>();//存放结点9的孩子
+        nineList.add(new Node(10,null));
+        nineList.add(new Node(11,null));
+
+
+        fourList.add(new Node(9,nineList));//给结点9再添加孩子10、11
         oneList.add(new Node(4,fourList));//给根节点添加孩子4
 
-        List<List<Integer>> aList= Solution.levelOrder(new Node(1,  oneList));
-        for (List<Integer> integers : aList)//遍历输出
-        {
 
-            for (int i = 0; i < integers.size(); i++)
-            {
-                if(i==integers.size()-1)//如果是集合的最后一个元素
-                {
-                    System.out.print(integers.get(i));
-                }
-                else
-                {
-                    System.out.print(integers.get(i)+",");
-                }
-            }
-            System.out.println();//遍历完一层之后就换行
+        Solution.levelOrder(new Node(1,  oneList));//遍历多叉树
 
-        }
 
     }
 }
@@ -87,12 +79,13 @@ class Node
 class Solution
 {
 
-    public static List<List<Integer>> levelOrder(Node rootNode)
+    public static void levelOrder(Node rootNode)
     {
         List<List<Integer>> totalList = new ArrayList<List<Integer>>();//存放的是整棵树的所有数据
         if (rootNode == null)
         {
-            return totalList;
+            System.out.println("多叉树为空！");
+            return;
         }
         LinkedList<Node> levelList = new LinkedList<Node>();//一层中的数据，把levelList当做队列使用，实现层序遍历
 
@@ -118,6 +111,26 @@ class Solution
             }
             totalList.add(list);//添加一层数据
         }
-        return totalList;//返回整棵多叉树
+
+
+        for (List<Integer> integers : totalList)//遍历输出
+        {
+
+            for (int i = 0; i < integers.size(); i++)
+            {
+                if(i==integers.size()-1)//如果是集合的最后一个元素
+                {
+                    System.out.print(integers.get(i));
+                }
+                else
+                {
+                    System.out.print(integers.get(i)+",");
+                }
+            }
+            System.out.println();//遍历完一层之后就换行
+
+        }
+
+
     }
 }
